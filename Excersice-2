@@ -1,0 +1,19 @@
+import React, {  useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [userinput, setuserinput] = useState("");
+
+  function onChangeHandler(event) {
+    console.log(event.target.value);
+    setuserinput(event.target.value);
+  }
+
+  return (
+    <div className="App">
+      <h1>Select your emoji!!!</h1>
+      <input onChange={onChangeHandler}></input>
+      <div>welcome {userinput}</div>
+    </div>
+  );
+}
