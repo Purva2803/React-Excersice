@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import "./styles.css";
+const myemoji = {
+  "🚴🏽": "cycling",
+  "🏊🏽‍♀️": "swiming",
+  "🤸🏽‍♀️": "gymnastic",
+  "🏄🏽‍♂️": "surfing",
+  "🧗🏽‍♀️": "climbing"
+};
+var emojisweknow = Object.keys(myemoji);
+console.log(Object.keys(myemoji));
+export default function App() {
+  const [meaning, setmeaning] = useState("");
+
+  function emojiChangeHandler(event) {
+    var userinput = event.target.value;
+    var meaning = myemoji[userinput];
+    console.log(meaning);
+    if (meaning === undefined) {
+      meaning = "we don't have emoji for that sport";
+    }
+    setmeaning(meaning);
+  }
+
+  function emojiinputHandler(emoji) {
+    console.log(emoji);
+    var meaning = myemoji[emoji];
+    setmeaning(meaning);
+  }
+
+  return (
+    <div className="App">
+      <h1>Select your emoji!!!</h1>
+      <h2>which sport you like below them?</h2>
+      <input onChange={emojiChangeHandler}></input>
+      <h3>{meaning}</h3>
+      <h3>emojis we know</h3>
+      {emojisweknow.map(function (emoji) {
+        return (
+          <span
+            onClick={() => emojiinputHandler(emoji)}
+            style={{ cursor: "pointer" }}
+          >
+            {emoji}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
